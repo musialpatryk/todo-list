@@ -1,7 +1,11 @@
 const theme = {
   backgroundColor: {
-    light: "#ffffff",
-    dark: "#000000",
+    light: "#F7ECE1",
+    dark: "#44344F",
+  },
+  fontSize: {
+    m: "24px",
+    l: "28px",
   },
 };
 
