@@ -1,24 +1,6 @@
 import React from "react";
 import TodoList from "components/todo-list/TodoList";
-import styled from "styled-components";
-
-const StyledWrapper = styled.div`
-  overflow: auto;
-  padding: 0 30px;
-  display: flex;
-  flex-direction: column;
-
-  @media ${({ theme }) => theme.media.large} {
-    flex-direction: row;
-    justify-content: space-around;
-`;
-
-const StyledHeader = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.s};
-  text-align: center;
-  font-weight: 500;
-  margin-top: 10px;
-`;
+import { StyledHeader, StyledWrapper } from "./Todos.style";
 
 const Todos = ({ todos, changeTodo }) => {
   const getDoneTodos = (todoList) => {
