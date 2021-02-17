@@ -1,11 +1,15 @@
 const theme = {
-  backgroundColor: {
-    light: "#F7ECE1",
-    dark: "#44344F",
-  },
   fontSize: {
-    m: "24px",
-    l: "28px",
+    s: "18px",
+    m: "22px",
+    l: "32px",
+  },
+  light: {
+    backgroundColor: "#ebebeb",
+    addTodo: "#2cb851",
+  },
+  dark: {
+    backgroundColor: "#44344F",
   },
 };
 
