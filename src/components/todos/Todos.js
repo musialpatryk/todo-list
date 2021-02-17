@@ -13,6 +13,13 @@ const StyledWrapper = styled.div`
     justify-content: space-around;
 `;
 
+const StyledHeader = styled.h2`
+  font-size: ${({ theme }) => theme.fontSize.s};
+  text-align: center;
+  font-weight: 500;
+  margin-top: 10px;
+`;
+
 const Todos = ({ todos, changeTodo }) => {
   const getDoneTodos = (todoList) => {
     return todoList.filter(({ done }) => !done);
@@ -24,6 +31,9 @@ const Todos = ({ todos, changeTodo }) => {
 
   return (
     <StyledWrapper>
+      {todos.length === 0 ? (
+        <StyledHeader>Type your first todo.</StyledHeader>
+      ) : null}
       {getDoneTodos(todos).length > 0 ? (
         <TodoList
           todos={getDoneTodos(todos)}
