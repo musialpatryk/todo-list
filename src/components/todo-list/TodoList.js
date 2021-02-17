@@ -4,6 +4,10 @@ import { fadeInAnimation } from "animations/animations";
 
 const StyledWrapper = styled.div`
   margin: 20px 0 40px 0;
+
+  @media ${({ theme }) => theme.media.large} {
+    max-width: 30%;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -29,7 +33,7 @@ const StyledLabel = styled.label`
 const TodoList = ({ todos, message, handleTodoChange }) => {
   return (
     <StyledWrapper>
-      {todos.length > 0 ? <StyledHeader>{message}</StyledHeader> : null}
+      <StyledHeader>{message}</StyledHeader>
       <StyledList>
         {todos.map(({ id, value, done }) => (
           <li key={id} onClick={() => handleTodoChange(id)}>

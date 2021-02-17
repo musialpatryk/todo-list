@@ -7,9 +7,15 @@ const StyledWrapper = styled.div`
   height: 100px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 1px 2px 1px #000000;
   animation-name: ${bottomToTopAnimation};
   animation-duration: 1s;
+
+  @media ${({ theme }) => theme.media.large} {
+    align-items: center;
+    box-shadow: 0px -6px 6px 0px rgb(224 178 178 / 0.68);
+    padding: 30px 0;
+    height: 160px;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -19,6 +25,14 @@ const StyledInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize.s};
   border: none;
   background-color: ${({ theme }) => theme.light.backgroundColor};
+  box-shadow: 0px 1px 2px 1px #000000;
+
+  @media ${({ theme }) => theme.media.large} {
+    width: 350px;
+    box-shadow: none;
+    margin-bottom: 10px;
+    border-bottom: 1px solid;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -26,6 +40,10 @@ const StyledButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.m};
   background-color: ${({ theme }) => theme.light.addTodo};
   border: none;
+
+  @media ${({ theme }) => theme.media.large} {
+    width: 350px;
+  }
 `;
 
 const AddTodo = ({ handleAddTodo }) => {

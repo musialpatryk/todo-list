@@ -46,6 +46,7 @@ const AppWrapper = styled.div`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-family: "B612", sans-serif;
   overflow: hidden;
+}
 `;
 
 function App() {
