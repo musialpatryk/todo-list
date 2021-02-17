@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { bottomToTopAnimation } from "animations/animations";
 
-const StyledWrapper = styled.div`
+const StyledForm = styled.form`
   width: 100%;
   height: 100px;
   display: flex;
@@ -33,11 +33,12 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledSubmit = styled.input`
   height: 60px;
   font-size: ${({ theme }) => theme.fontSize.m};
   background-color: ${({ theme }) => theme.light.addTodo};
   border: none;
+  cursor: pointer;
 
   @media ${({ theme }) => theme.media.large} {
     width: 350px;
@@ -45,23 +46,24 @@ const StyledButton = styled.button`
 `;
 
 const AddTodo = ({ handleAddTodo }) => {
-  const inputValue = useRef("");
+  const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (value) => {
-    inputValue.current = value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddTodo(inputValue);
+    setInputValue("");
   };
 
   return (
-    <StyledWrapper>
+    <StyledForm onSubmit={handleSubmit}>
       <StyledInput
         type="text"
-        onChange={(e) => handleInputChange(e.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
         placeholder="What u have to do?"
       />
-      <StyledButton onClick={() => handleAddTodo(inputValue.current)}>
-        Add todo
-      </StyledButton>
-    </StyledWrapper>
+      <StyledSubmit type="submit" value="Add todo" />
+    </StyledForm>
   );
 };
 
