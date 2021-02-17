@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { bottomToTopAnimation } from "animations/animations";
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.form`
   width: 100%;
   height: 100px;
   display: flex;
@@ -33,7 +33,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledSubmit = styled.input`
   height: 60px;
   font-size: ${({ theme }) => theme.fontSize.m};
   background-color: ${({ theme }) => theme.light.addTodo};
@@ -51,16 +51,19 @@ const AddTodo = ({ handleAddTodo }) => {
     inputValue.current = value;
   };
 
+  const handleSubmit = (e) => {
+    handleAddTodo(inputValue.current);
+    e.preventDefault();
+  };
+
   return (
-    <StyledWrapper>
+    <StyledWrapper onSubmit={handleSubmit}>
       <StyledInput
         type="text"
         onChange={(e) => handleInputChange(e.target.value)}
         placeholder="What u have to do?"
       />
-      <StyledButton onClick={() => handleAddTodo(inputValue.current)}>
-        Add todo
-      </StyledButton>
+      <StyledSubmit type="submit" value="Add todo" />
     </StyledWrapper>
   );
 };
