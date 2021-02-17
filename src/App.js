@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Todos from "components/todos/Todos";
 import { useState } from "react";
+import AddTodo from "components/add-todo/AddTodo";
 
 const startTodos = [
   {
@@ -40,8 +41,11 @@ const AppWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.backgroundColor.light};
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.light.backgroundColor};
   font-size: ${({ theme }) => theme.fontSize.m};
+  font-family: "B612", sans-serif;
+  overflow: hidden;
 `;
 
 function App() {
@@ -57,9 +61,21 @@ function App() {
     setTodos(newTodos);
   };
 
+  const addTodo = (todoValue) => {
+    const lastId = todos[todos.length - 1].id;
+    const newTodos = [...todos];
+    newTodos.push({
+      id: lastId + 1,
+      value: todoValue,
+      done: false,
+    });
+    setTodos(newTodos);
+  };
+
   return (
     <AppWrapper>
       <Todos todos={todos} changeTodo={changeTodoStatus} />
+      <AddTodo handleAddTodo={addTodo} />
     </AppWrapper>
   );
 }
