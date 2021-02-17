@@ -3,39 +3,6 @@ import Todos from "components/todos/Todos";
 import { useState } from "react";
 import AddTodo from "components/add-todo/AddTodo";
 
-const startTodos = [
-  {
-    id: 0,
-    value: "Cleaning.",
-    done: false,
-  },
-  {
-    id: 1,
-    value: "Create todo app.",
-    done: false,
-  },
-  {
-    id: 2,
-    value: "Do 100 push-ups",
-    done: false,
-  },
-  {
-    id: 3,
-    value: "Cleaning.",
-    done: true,
-  },
-  {
-    id: 4,
-    value: "Create todo app.",
-    done: true,
-  },
-  {
-    id: 5,
-    value: "Do 100 push-ups",
-    done: true,
-  },
-];
-
 const AppWrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -50,7 +17,20 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
-  const [todos, setTodos] = useState(startTodos);
+  const getLocalStorageTodos = () => {
+    const localTodos = localStorage.getItem("todosList");
+    if (localTodos === null) return [];
+    return JSON.parse(localTodos);
+  };
+
+  const saveLocalStorageTodos = (todosToSave) => {
+    localStorage.setItem("todosList", JSON.stringify(todosToSave));
+  };
+
+  const [todos, setTodos] = useState(() => {
+    const initialTodos = getLocalStorageTodos();
+    return initialTodos;
+  });
 
   const changeTodoStatus = (todoId) => {
     const newTodos = todos.map((todo) => {
@@ -59,17 +39,21 @@ function App() {
       }
       return todo;
     });
+    saveLocalStorageTodos(newTodos);
     setTodos(newTodos);
   };
 
   const addTodo = (todoValue) => {
-    const lastId = todos[todos.length - 1].id;
+    let lastId;
+    if (todos.length === 0) lastId = -1;
+    else lastId = todos[todos.length - 1].id;
     const newTodos = [...todos];
     newTodos.push({
       id: lastId + 1,
       value: todoValue,
       done: false,
     });
+    saveLocalStorageTodos(newTodos);
     setTodos(newTodos);
   };
 
