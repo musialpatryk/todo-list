@@ -5,6 +5,13 @@ import styled from "styled-components";
 const StyledWrapper = styled.div`
   overflow: auto;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+
+  @media ${({ theme }) => theme.media.large} {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 const Todos = ({ todos, changeTodo }) => {
