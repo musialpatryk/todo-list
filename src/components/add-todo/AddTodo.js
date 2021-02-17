@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { StyledForm, StyledInput, StyledSubmit } from "./AddTodos.style";
 
 const AddTodo = ({ handleAddTodo }) => {
   const [inputValue, setInputValue] = useState("");
+  const [inputPlaceholder, setInputPlaceholder] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (inputValue === "") {
+      setInputPlaceholder(false);
+      return;
+    }
     handleAddTodo(inputValue);
+    setInputPlaceholder(true);
     setInputValue("");
   };
 
@@ -16,7 +22,11 @@ const AddTodo = ({ handleAddTodo }) => {
         type="text"
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
-        placeholder="What u have to do?"
+        placeholder={
+          inputPlaceholder
+            ? "What u have to do?"
+            : "First, type what you have to do!"
+        }
       />
       <StyledSubmit type="submit" value="Add todo" />
     </StyledForm>
