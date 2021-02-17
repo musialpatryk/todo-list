@@ -5,21 +5,40 @@ import styled from "styled-components";
 const StyledWrapper = styled.div`
   overflow: auto;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+
+  @media ${({ theme }) => theme.media.large} {
+    flex-direction: row;
+    justify-content: space-around;
 `;
 
 const Todos = ({ todos, changeTodo }) => {
+  const getDoneTodos = (todoList) => {
+    return todoList.filter(({ done }) => !done);
+  };
+
+  const getTodos = (todoList) => {
+    return todoList.filter(({ done }) => done);
+  };
+
   return (
     <StyledWrapper>
-      <TodoList
-        todos={todos.filter(({ done }) => !done)}
-        message="To do:"
-        handleTodoChange={changeTodo}
-      />
-      <TodoList
-        todos={todos.filter(({ done }) => done)}
-        message="Done:"
-        handleTodoChange={changeTodo}
-      />
+      {getDoneTodos(todos).length > 0 ? (
+        <TodoList
+          todos={getDoneTodos(todos)}
+          message="Todo:"
+          handleTodoChange={changeTodo}
+        />
+      ) : null}
+
+      {getTodos(todos).length > 0 ? (
+        <TodoList
+          todos={getTodos(todos)}
+          message="Done:"
+          handleTodoChange={changeTodo}
+        />
+      ) : null}
     </StyledWrapper>
   );
 };

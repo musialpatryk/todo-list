@@ -11,6 +11,10 @@ const theme = {
   dark: {
     backgroundColor: "#44344F",
   },
+  media: {
+    large: "(min-width: 768px)",
+    small: "(max-width: 768px)",
+  },
 };
 
 export default theme;
