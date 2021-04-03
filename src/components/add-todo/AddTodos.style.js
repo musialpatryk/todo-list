@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { bottomToTopAnimation } from "animations/animations";
+import { BottomToTopAnimation } from "animations/BottomToTop";
 
 export const StyledForm = styled.form`
   width: 100%;
   height: 100px;
   display: flex;
   flex-direction: column;
-  animation-name: ${bottomToTopAnimation};
+  animation-name: ${BottomToTopAnimation};
   animation-duration: 1s;
   box-shadow: 0px -6px 6px 0px rgb(224 178 178 / 0.68);
 
