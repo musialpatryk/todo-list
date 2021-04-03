@@ -16,7 +16,7 @@ To run this app locally you need node.js with npm.
 
 ## Run project
 
-You can run project by following this instruction or you can build it and serve it with a static server.
+You can run project by following this instruction or you can build and serve it with a static server.
 
 1. Clone project.
 1. Install project dependencies using:
