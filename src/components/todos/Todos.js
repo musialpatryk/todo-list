@@ -19,7 +19,7 @@ const Todos = ({ todos, changeTodo }) => {
       {getDoneTodos(todos).length > 0 ? (
         <TodoList
           todos={getDoneTodos(todos)}
-          message="Todo:"
+          message="Things to do:"
           handleTodoChange={changeTodo}
         />
       ) : null}
@@ -27,7 +27,7 @@ const Todos = ({ todos, changeTodo }) => {
       {getTodos(todos).length > 0 ? (
         <TodoList
           todos={getTodos(todos)}
-          message="Done:"
+          message="Done things:"
           handleTodoChange={changeTodo}
         />
       ) : null}
