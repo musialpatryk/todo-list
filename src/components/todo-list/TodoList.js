@@ -10,17 +10,19 @@ const TodoList = ({ todos = [], message = "", handleTodoChange }) => {
   return (
     <StyledWrapper>
       <StyledHeader>{message}</StyledHeader>
-      <StyledList data-testid="todo-list">
-        {todos.length > 0
-          ? todos.map(({ id, value, done }) => (
+      {todos.length > 0 ? (
+        <StyledList data-testid="todo-list">
+          {todos.map(({ id, value, done }) => {
+            return (
               <li key={id} onClick={() => handleTodoChange(id)}>
                 <StyledLabel>
                   <input type="checkbox" defaultChecked={done} /> {value}
                 </StyledLabel>
               </li>
-            ))
-          : null}
-      </StyledList>
+            );
+          })}
+        </StyledList>
+      ) : null}
     </StyledWrapper>
   );
 };

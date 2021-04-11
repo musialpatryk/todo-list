@@ -2,11 +2,10 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const TodosContext = createContext();
 
-const saveLocalStorageTodos = (todosToSave) => {
-  localStorage.setItem("todosList", JSON.stringify(todosToSave));
-};
-
 const todosReducer = ({ todos }, action) => {
+  const saveLocalStorageTodos = (todosToSave) => {
+    localStorage.setItem("todosList", JSON.stringify(todosToSave));
+  };
   switch (action.type) {
     case "initTodos": {
       const localTodos = localStorage.getItem("todosList");
