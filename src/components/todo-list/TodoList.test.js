@@ -1,16 +1,16 @@
 import React from "react";
-import { screen, waitFor } from "@testing-library/react";
-import { renderWithProviders } from "helpers/renderWithProviders";
+import { screen } from "@testing-library/react";
+import { render } from "test-utils";
 import TodoList from "./TodoList";
 
 describe("Todo list", () => {
   it("should render without todos", async () => {
-    renderWithProviders(<TodoList />);
+    render(<TodoList />);
   });
 
   it("should render given message", async () => {
     const customMessage = "custom message";
-    renderWithProviders(<TodoList message={customMessage} />);
+    render(<TodoList message={customMessage} />);
     await screen.findByText(customMessage);
   });
 
@@ -19,7 +19,7 @@ describe("Todo list", () => {
       { id: 0, value: "done todo", done: true },
       { id: 1, value: "undone todo", done: true },
     ];
-    renderWithProviders(<TodoList todos={todos} />);
+    render(<TodoList todos={todos} />);
     const todosList = await screen.getByTestId("todo-list");
     expect(todosList.children.length).toBe(2);
   });

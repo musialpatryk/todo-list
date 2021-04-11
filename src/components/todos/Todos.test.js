@@ -1,18 +1,18 @@
 import React from "react";
 import Todos from "./Todos";
-import { renderWithProviders } from "helpers/renderWithProviders";
 import { screen } from "@testing-library/react";
+import { render } from "test-utils";
 
 describe("Todos lists", () => {
   it("should render message when no todos provided", async () => {
     const noTodos = [];
-    renderWithProviders(<Todos todos={noTodos} />);
+    render(<Todos todos={noTodos} />);
     await screen.findByText("Type your first todo.");
   });
 
   it("shouldn't render any lists when no todos provided", async () => {
     const noTodos = [];
-    renderWithProviders(<Todos todos={noTodos} />);
+    render(<Todos todos={noTodos} />);
 
     expect(await screen.queryByText("Things to do:")).toBe(null);
     expect(await screen.queryByText("Done things:")).toBe(null);
@@ -20,14 +20,14 @@ describe("Todos lists", () => {
 
   it("shouldn't render message when todos provided", async () => {
     const todos = [{ id: 0, value: "undone todo", done: false }];
-    renderWithProviders(<Todos todos={todos} />);
+    render(<Todos todos={todos} />);
 
     expect(await screen.queryByText("Type your first todo.")).toBe(null);
   });
 
   it("should render only list of undone things", async () => {
     const undoneTodos = [{ id: 0, value: "undone todo", done: false }];
-    renderWithProviders(<Todos todos={undoneTodos} />);
+    render(<Todos todos={undoneTodos} />);
 
     await screen.findByText("Things to do:");
     expect(await screen.queryByText("Done things:")).toBe(null);
@@ -35,7 +35,7 @@ describe("Todos lists", () => {
 
   it("should render only list of done things", async () => {
     const doneTodos = [{ id: 0, value: "done todo", done: true }];
-    renderWithProviders(<Todos todos={doneTodos} />);
+    render(<Todos todos={doneTodos} />);
 
     await screen.findByText("Done things:");
     expect(await screen.queryByText("Things to do:")).toBe(null);
@@ -49,7 +49,7 @@ describe("Todos lists", () => {
       { id: 3, value: "undone todo", done: true },
       { id: 4, value: "undone todo", done: true },
     ];
-    renderWithProviders(<Todos todos={todos} />);
+    render(<Todos todos={todos} />);
     const doneTodosElements = await screen.queryAllByText("done todo");
     const undoneTodosElements = await screen.queryAllByText("undone todo");
 
