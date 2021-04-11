@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useTodos } from "providers/todos-context";
 import { StyledForm, StyledInput, StyledSubmit } from "./AddTodos.style";
 
-const AddTodo = ({ handleAddTodo }) => {
+const AddTodo = () => {
   const [inputValue, setInputValue] = useState("");
   const [inputPlaceholder, setInputPlaceholder] = useState(true);
+  const { dispatch } = useTodos();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +13,7 @@ const AddTodo = ({ handleAddTodo }) => {
       setInputPlaceholder(false);
       return;
     }
-    handleAddTodo(inputValue);
+    dispatch({ type: "addTodo", value: inputValue });
     setInputPlaceholder(true);
     setInputValue("");
   };

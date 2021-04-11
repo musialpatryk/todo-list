@@ -10,9 +10,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <GlobalFonts />
     <GlobalStyle />
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ThemeProvider>,
   document.getElementById("root")
 );

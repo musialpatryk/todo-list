@@ -2,9 +2,14 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import theme from "theme";
+import { TodosProvider } from "providers/todos-context";
 
 const AllTheProviders = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <TodosProvider>{children}</TodosProvider>
+    </ThemeProvider>
+  );
 };
 
 const customRender = (ui, options) =>
