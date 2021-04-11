@@ -10,10 +10,8 @@ describe("Todos lists", () => {
   });
 
   it("shouldn't render any lists when no todos provided", async () => {
-    const noTodos = [];
-    render(<Todos todos={noTodos} />);
-
-    expect(await screen.queryByText("Things to do:")).toBe(null);
-    expect(await screen.queryByText("Done things:")).toBe(null);
+    render(<Todos />);
+    expect(await screen.queryByText("Things to do:")).toBeNull();
+    expect(await screen.queryByText("Done things:")).toBeNull();
   });
 });
