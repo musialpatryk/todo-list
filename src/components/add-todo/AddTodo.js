@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { StyledForm, StyledInput, StyledSubmit } from "./AddTodos.style";
 
 const AddTodo = ({ handleAddTodo }) => {
@@ -16,11 +16,16 @@ const AddTodo = ({ handleAddTodo }) => {
     setInputValue("");
   };
 
+  const handleChangeValue = (e) => {
+    setInputValue(e.target.value);
+    setInputPlaceholder(true);
+  };
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledInput
         type="text"
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={handleChangeValue}
         value={inputValue}
         placeholder={
           inputPlaceholder
