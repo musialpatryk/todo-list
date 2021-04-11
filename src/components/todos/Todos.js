@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoList from "components/todo-list/TodoList";
 import { StyledHeader, StyledWrapper } from "./Todos.style";
+import { useTodos } from "providers/todos-context";
 
-const Todos = ({ todos, changeTodo }) => {
-  const getDoneTodos = (todoList) => {
-    return todoList.filter(({ done }) => !done);
+const Todos = () => {
+  const { todos, dispatch } = useTodos();
+
+  useEffect(() => {
+    dispatch({ type: "initTodos" });
+  }, []);
+
+  const getDoneTodos = () => {
+    return todos.filter(({ done }) => !done);
   };
 
-  const getTodos = (todoList) => {
-    return todoList.filter(({ done }) => done);
+  const getTodos = () => {
+    return todos.filter(({ done }) => done);
+  };
+
+  const changeTodo = (todoId) => {
+    dispatch({ type: "changeTodoStatus", todoId });
   };
 
   return (
@@ -16,17 +27,17 @@ const Todos = ({ todos, changeTodo }) => {
       {todos.length === 0 ? (
         <StyledHeader>Type your first todo.</StyledHeader>
       ) : null}
-      {getDoneTodos(todos).length > 0 ? (
+      {getDoneTodos().length > 0 ? (
         <TodoList
-          todos={getDoneTodos(todos)}
+          todos={getDoneTodos()}
           message="Things to do:"
           handleTodoChange={changeTodo}
         />
       ) : null}
 
-      {getTodos(todos).length > 0 ? (
+      {getTodos().length > 0 ? (
         <TodoList
-          todos={getTodos(todos)}
+          todos={getTodos()}
           message="Done things:"
           handleTodoChange={changeTodo}
         />
